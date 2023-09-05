@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+    <style>
+        table {
+            border: 2px solid green;
+            margin: auto;
+            text-align: center;
+        }
+        .parent {
+            display: flex;
+            justify-content: center;
+            padding-top: 300px;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .text-left {
+            text-align: left;
+            color: #dc143c;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .btn {
+            text-align: center;
+            margin: 10px;
+            height: 30px;
+            width: 200px;
+            font-size: 15px;
+            background-color: #e0ffff;
+        }
+    </style>
+    <div class="parent">
+        <form action="#" th:action="@{/user-create}" th:object="${user}" th:method="POST">
+            <table th:border="1" th:bgcolor="e0ffff">
+                <tr class="text-right">
+                    <th><label for="firstName">Имя:</label></th>
+                    <th><input type="text" th:field="*{firstName}" id="firstName" placeholder="Имя"></th>
+                    <th class="text-left"><span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span></th>
+                </tr>
+                <tr class="text-right">
+                    <th><label for="lastName">Фамилия:</label></th>
+                    <th><input type="text" th:field="*{lastName}" id="lastName" placeholder="Фамилия"></th>
+                    <th class="text-left"><span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span></th>
+                </tr>
+                <tr class="text-right">
+                    <th><label for="email">E-mail:</label></th>
+                    <th><input type="text" th:field="*{email}" id="email" placeholder="E-mail"></th>
+                    <th class="text-left"><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></th>
+                </tr>
+            </table>
+            <div class="text-center"><input class="btn" type="submit" value="Сохранить"></div>
+        </form>
+    </div>
+</body>
+</html>

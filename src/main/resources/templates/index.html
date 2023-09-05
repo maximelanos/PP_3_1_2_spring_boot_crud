@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div>
+    <style>
+        table {
+            border: 2px solid green;
+            margin: auto;
+            text-align: center;
+        }
+        th { width: 250px; }
+        a { margin: 10px; }
+        .parent { text-align: center; }
+    </style>
+
+    <h2 class="parent" th:if="${#lists.isEmpty(users)}">Пользователи не найдены!</h2>
+    <h3 class="parent"><a href="/user-create">Создать нового пользователя</a></h3>
+
+    <div th:unless="${#lists.isEmpty(users)}">
+        <h2 class="parent">Пользователи</h2>
+        <table th:border="1" th:bgcolor="E0FFFF">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>E-mail</th>
+                <th>Действие</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.firstName}">Имя</td>
+                <td th:text="${user.lastName}">Фамилия</td>
+                <td th:text="${user.email}">E-mail</td>
+                <td><a th:href="@{user-update/{id}(id=${user.id})}">Редактировать </a><a th:href="@{user-delete/{id}(id=${user.id})}">Удалить</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
